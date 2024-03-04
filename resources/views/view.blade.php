@@ -143,8 +143,14 @@
     </div>
 </div>
 <!-- About End -->
+<h1>{{ $category->name }}</h1>
 
-
+<h2>Products:</h2>
+<ul>
+    @foreach ($category->products as $product)
+        <li>{{ $product->name }}</li>
+    @endforeach
+</ul>
 <!-- Back to Top -->
 <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 
