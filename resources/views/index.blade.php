@@ -30,28 +30,31 @@
 
 
 <!-- Navbar Start -->
-<nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
-    <a href="index" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-        <h2 class="m-0 text-primary">Products</h2>
-    </a>
-    <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-        <div class="navbar-nav ms-auto p-4 p-lg-0">
-            <a href="index.html" class="nav-item nav-link active">Home</a>
-            <a href="about.html" class="nav-item nav-link">About</a>
-            <a href="courses.html" class="nav-item nav-link">Courses</a>
-            <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                <div class="dropdown-menu fade-down m-0">
-                    <a href="team.html" class="dropdown-item">Our Team</a>
-                    <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                    <a href="404.html" class="dropdown-item">404 Page</a>
-                </div>
+<nav class="no-underline bg-gray-400 p-4 text-black flex justify-between items-center">
+    <!-- Левая часть навбара (например, логотип или название сайта) -->
+    <div>
+        <a href="." class="no-underline text-white text-lg font-semibold">Products</a>
+    </div>
+
+    <!-- Правая часть навбара с кнопками -->
+    <div class="flex items-center">
+        <div class="container dropdown">
+            <a href="#" class="no-underline text-white text-lg font-semibold" data-bs-toggle="dropdown"><h5>Pages</h5></a>
+            <div class="dropdown-menu fade-down m-0">
+                @foreach($all as $smth)
+                    <a href="{{ url('/index', $smth->id ) }}" class="dropdown-item">{{$smth->name}}</a>
+                @endforeach
             </div>
-            <a href="contact.html" class="nav-item nav-link">Contact</a>
         </div>
+        <!-- Кнопка Профиль пользователя -->
+        <a href="/profile" class="no-underline bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-l focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
+            user
+        </a>
+
+        <!-- Кнопка Корзина -->
+        <a href="/cart" class="no-underline bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-r focus:outline-none focus:shadow-outline transition duration-150 ease-in-out ml-2">
+            <i class="bi bi-cart"></i>
+        </a>
     </div>
 </nav>
 <!-- Navbar End -->

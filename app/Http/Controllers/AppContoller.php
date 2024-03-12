@@ -8,12 +8,6 @@ use App\Models\Category;
 
 class AppContoller extends Controller
 {
-    public function Viewcontrol($viewid){
-
-        $cat = Category::with('products')->where('id', $viewid)->firstOrFail();
-
-        return view('view', compact('cat'));
-    }
 
     public function show($id)
     {
@@ -23,4 +17,11 @@ class AppContoller extends Controller
             'all' => Category::all()
         ]);
     }
+    public function nav()
+    {
+        return view('index', [
+            'all' => Category::all()
+        ]);
+    }
 }
+
