@@ -18,7 +18,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
-
+    @vite('resources/css/app.css')
     <!-- Customized Bootstrap Stylesheet -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -39,7 +39,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav ms-auto p-4 p-lg-0">
-            <a href="index.html" class="nav-item nav-link active">Home</a>
+            <a href="index.html" class="nav-item nav-link active"><i class="bi bi-cart"></i></a>
             <a href="about.html" class="nav-item nav-link">About</a>
             <a href="courses.html" class="nav-item nav-link">Courses</a>
             <div class="nav-item dropdown">
@@ -51,11 +51,30 @@
                 </div>
             </div>
             <a href="contact.html" class="nav-item nav-link">Contact</a>
+            <a href="" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block"><i class="bi bi-cart"></i></a>
         </div>
     </div>
 </nav>
-<!-- Navbar End -->
 
+<div class=" dropdown">
+    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+    <div class="dropdown-menu fade-down m-0">
+        @foreach($all as $smth)
+        <a href="{{ url('/index', $smth->id ) }}" class="dropdown-item">{{$smth->name}}</a>
+        @endforeach
+    </div>
+</div>
+
+
+<!-- Navbar End -->
+<h1>{{ $category->name }}</h1>
+
+<h2>Products:</h2>
+<ul>
+    @foreach ($category->products as $product)
+        <li>{{ $product->name }}</li>
+    @endforeach
+</ul>
 
 <!-- Service Start -->
 <div class="container-xxl py-5">
@@ -143,14 +162,6 @@
     </div>
 </div>
 <!-- About End -->
-<h1>{{ $category->name }}</h1>
-
-<h2>Products:</h2>
-<ul>
-    @foreach ($category->products as $product)
-        <li>{{ $product->name }}</li>
-    @endforeach
-</ul>
 <!-- Back to Top -->
 <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 

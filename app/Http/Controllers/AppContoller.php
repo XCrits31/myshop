@@ -19,7 +19,8 @@ class AppContoller extends Controller
     {
         return view('view', [
             'category' => Category::findOrFail($id),
-            'products' => Category::with('products')->findOrFail($id)
+            'products' => Category::with('products')->findOrFail($id),
+            'all' => Category::all()
         ]);
     }
 }
