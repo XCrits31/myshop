@@ -17,9 +17,5 @@ use App\Http\Controllers\AppContoller;
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::get('/index', function () {
-    return view('index');
-});
-
+Route::get('/index', [AppContoller::class, 'nav']);
 Route::get('/index/{id}', [AppContoller::class, 'show']);
