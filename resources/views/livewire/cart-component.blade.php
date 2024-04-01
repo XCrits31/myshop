@@ -22,16 +22,17 @@
     <!-- Customized Bootstrap Stylesheet -->
 
     <!-- Template Stylesheet -->
-    <link href="css.style.css" rel="stylesheet">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css.style.css" rel="stylesheet">
 </head>
 
 <body>
-
+<div>
 <nav class="no-underline bg-gray-400 p-4 text-black flex justify-between items-center">
     <!-- Левая часть навбара (например, логотип или название сайта) -->
     <div>
-        <a href="." class="no-underline text-white text-lg font-semibold">Products</a>
+        <a href="{{ route('view.first') }}" class="no-underline text-white text-lg font-semibold">Products</a>
     </div>
 
     <!-- Правая часть навбара с кнопками -->
@@ -55,18 +56,21 @@
         </a>
     </div>
 </nav>
+
 <div class="container mx-auto px-4">
-    <h2 class="text-2xl font-bold my-4">{{ $category->name }}</h2>
     <table class="table-auto w-full mb-4">
         <tbody>
-        @foreach ($category->products as $product)
-        <tr>
-            <td class="border px-4 py-2">{{ $product->name }}</td>
-        </tr>
+        @foreach (Cart::content() as $product)
+            <tr>
+                <td class="border px-4 py-2">{{ $product->model->name }}</td>
+                <td class="border px-4 py-2">{{ $product->model->price }}</td>
+            </tr>
         @endforeach
         </tbody>
     </table>
 </div>
+
+
 
 <!-- Navbar End -->
 
@@ -165,7 +169,7 @@
 <!-- JavaScript Libraries -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-
+</div>
 </body>
 
 </html>

@@ -168,7 +168,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        Darryldecode\Cart\CartServiceProvider::class,
+        Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
     ])->toArray(),
 
     /*
@@ -183,7 +183,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
+        'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 

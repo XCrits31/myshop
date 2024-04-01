@@ -26,8 +26,7 @@
     <link href="css.style.css" rel="stylesheet">
 </head>
 
-<body>
-
+<div>
 
 <!-- Navbar Start -->
 <nav class="no-underline bg-gray-400 p-4 text-black flex justify-between items-center">
@@ -155,7 +154,7 @@
 <!-- JavaScript Libraries -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-
+</div>
 </body>
 
 </html>

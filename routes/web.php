@@ -1,7 +1,9 @@
 <?php
 
+use App\Livewire\HomeComponent;
+use App\Livewire\CartComponent;
+use App\Livewire\ViewComponent;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AppContoller;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,5 +19,6 @@ use App\Http\Controllers\AppContoller;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/index', [AppContoller::class, 'nav']);
-Route::get('/index/{id}', [AppContoller::class, 'show']);
+Route::get('/index', HomeComponent::class)->name('view.first');
+Route::get('/index/{id}', ViewComponent::class)->name('view.second');
+Route::get('/cart', CartComponent::class)->name("cart");
