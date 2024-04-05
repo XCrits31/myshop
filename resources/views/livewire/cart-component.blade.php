@@ -58,16 +58,30 @@
 </nav>
 
 <div class="container mx-auto px-4">
+    <h2 class="text-2xl font-bold my-4">Cart</h2>
+    @if(Cart::count()>0)
     <table class="table-auto w-full mb-4">
         <tbody>
         @foreach (Cart::content() as $product)
             <tr>
+                <td class="border px-4 py-2">{{ $product->model->id }}</td>
                 <td class="border px-4 py-2">{{ $product->model->name }}</td>
                 <td class="border px-4 py-2">{{ $product->model->price }}</td>
+                <td class="border px-4 py-2">
+                        <div class="flex items-center space-x-2">
+                            <a href="#" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2.5 rounded focus:outline-none " wire:click.prevent="qtydown('{{$product->rowId}}')">-</a>
+                            <span class="font-bold text-xl"> {{$product->qty}}</span>
+                            <a href="#" class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2.5 rounded focus:outline-none "  wire:click.prevent="qtyup('{{$product->rowId}}')">+</a>
+                        </div>
+                </td>
+                <td class="border px-4 py-2">{{ $product->subtotal }}</td>
             </tr>
         @endforeach
         </tbody>
     </table>
+    @else
+    <p>No item in Cart</p>
+    @endif
 </div>
 
 
