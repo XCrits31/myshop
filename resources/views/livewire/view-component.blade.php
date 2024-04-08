@@ -44,15 +44,15 @@
                 @endforeach
             </div>
         </div>
+           @livewire('cart-icon-component')
+
         <!-- Кнопка Профиль пользователя -->
         <a href="/profile" class="no-underline bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-l focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
             user
         </a>
 
         <!-- Кнопка Корзина -->
-        <a href="/cart" class="no-underline bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-r focus:outline-none focus:shadow-outline transition duration-150 ease-in-out ml-2">
-            <i class="bi bi-cart"></i>
-        </a>
+
     </div>
 </nav>
 <div class="container mx-auto px-4">

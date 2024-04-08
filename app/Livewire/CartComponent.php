@@ -8,15 +8,24 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 class CartComponent extends Component
 {
 
-    public function qtyup($rowid)
+    public function qtyup($rowid): void
     {
         $product = Cart::get($rowid);
         Cart::update($rowid,$product->qty+1);
     }
-    public function qtydown($rowid)
+    public function qtydown($rowid): void
     {
         $product = Cart::get($rowid);
         Cart::update($rowid,$product->qty-1);
+    }
+    public function delete($id): void
+    {
+        Cart::remove($id);
+        request()->session()->flash("session", "Removed successfully");
+    }
+    public function clear(): void
+    {
+        Cart::destroy();
     }
     public function render()
     {

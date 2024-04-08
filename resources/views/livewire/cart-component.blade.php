@@ -25,6 +25,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="css.style.css" rel="stylesheet">
+    @livewireStyles
 </head>
 
 <body>
@@ -45,15 +46,12 @@
                 @endforeach
             </div>
         </div>
-        <!-- Кнопка Профиль пользователя -->
+        @livewire('cart-icon-component')
         <a href="/profile" class="no-underline bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-l focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
             user
         </a>
 
-        <!-- Кнопка Корзина -->
-        <a href="/cart" class="no-underline bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-r focus:outline-none focus:shadow-outline transition duration-150 ease-in-out ml-2">
-            <i class="bi bi-cart"></i>
-        </a>
+
     </div>
 </nav>
 
@@ -75,15 +73,31 @@
                         </div>
                 </td>
                 <td class="border px-4 py-2">{{ $product->subtotal }}</td>
+                <td class="border px-2 py-2 text-center">
+                    <a href="#" class="no-underline" wire:click.prevent="delete('{{ $product->rowId }}')"> <i class="bi bi-trash" style="font-size: 0.75rem;"></i></a>
+                </td>
             </tr>
         @endforeach
+        <tr>
+            <td class="border px-4 py-2">Total : {{ Cart::total() }}</td>
+            <td class="border px-2 py-2 text-center">
+                <a href="#" class="no-underline" wire:click.prevent="clear()"> Clear</a>
+            </td>
+        </tr>
         </tbody>
+
     </table>
+        @livewire('test-component')
+
     @else
     <p>No item in Cart</p>
     @endif
 </div>
-
+    @if (session('success'))
+        <div x-data="{ show: true }" x-show="show" x-init="@this.on('hide-success-message', () => { setTimeout(() => show = false, 3000); })" class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
 
 
 <!-- Navbar End -->
@@ -183,6 +197,7 @@
 <!-- JavaScript Libraries -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </div>
 </body>
 
