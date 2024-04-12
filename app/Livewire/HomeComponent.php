@@ -9,8 +9,6 @@ class HomeComponent extends Component
 {
     public function render()
     {
-        return view('livewire.home-component')->with([
-            'all' => Category::all()
-        ]);
+        return view('livewire.home-component');
     }
 }

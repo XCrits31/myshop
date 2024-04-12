@@ -23,8 +23,7 @@ class ViewComponent extends Component
     {
         return view('livewire.view-component', [
             'category' => $this->category,
-            'products' => $this->products,
-            'all' => $this->all
+            'products' => $this->products
         ]);
     }
     public function store($product_id, $product_name, $product_price)

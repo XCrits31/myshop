@@ -29,8 +29,6 @@ class CartComponent extends Component
     }
     public function render()
     {
-        return view('livewire.cart-component')->with([
-            'all' => Category::all()
-        ]);
+        return view('livewire.cart-component');
     }
 }

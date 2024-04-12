@@ -30,30 +30,7 @@
 
 <body>
 <div>
-<nav class="no-underline bg-gray-400 p-4 text-black flex justify-between items-center">
-    <!-- Левая часть навбара (например, логотип или название сайта) -->
-    <div>
-        <a href="{{ route('view.first') }}" class="no-underline text-white text-lg font-semibold">Products</a>
-    </div>
-
-    <!-- Правая часть навбара с кнопками -->
-    <div class="flex items-center">
-        <div class="container dropdown">
-            <a href="#" class="no-underline text-white text-lg font-semibold" data-bs-toggle="dropdown"><h5>Pages</h5></a>
-            <div class="dropdown-menu fade-down m-0">
-                @foreach($all as $smth)
-                    <a href="{{ url('/index', $smth->id ) }}" class="dropdown-item">{{$smth->name}}</a>
-                @endforeach
-            </div>
-        </div>
-        @livewire('cart-icon-component')
-        <a href="/profile" class="no-underline bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-l focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
-            user
-        </a>
-
-
-    </div>
-</nav>
+    @livewire('nav-component')
 
 <div class="container mx-auto px-4">
     <h2 class="text-2xl font-bold my-4">Cart</h2>
