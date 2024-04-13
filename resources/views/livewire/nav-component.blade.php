@@ -1,9 +1,11 @@
 <nav class="no-underline bg-gray-400 p-4 text-black flex justify-between items-center w-full ">
     <!-- Левая часть навбара (например, логотип или название сайта) -->
     <div>
-        @component('components.application-logo')
-        @endcomponent
-        <a href="{{url('/index')}}" class="no-underline text-white text-lg font-semibold">Products</a>
+
+        <a href="{{url('/index')}}" class="no-underline text-white text-lg font-semibold">
+            @component('components.application-logo')
+                @endcomponent
+                Products</a>
     </div>
 
 
