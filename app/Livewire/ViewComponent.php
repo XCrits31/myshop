@@ -4,7 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Category;
 use Livewire\Component;
-use Gloudemans\Shoppingcart\Facades\Cart;
+use Cart;
 
 class ViewComponent extends Component
 {
@@ -26,10 +26,12 @@ class ViewComponent extends Component
             'products' => $this->products
         ]);
     }
-    public function store($product_id, $product_name, $product_price)
+    public function store($product_id, $product_name, $product_price, $user_id) : void
     {
         Cart::add($product_id, $product_name, 1, $product_price)->associate('App\Models\Product');
-        request()->session()->flash('success', 'Added Successfully');
+        Cart::store($user_id);
+        session()->flash('success', 'Added to Cart');
+        $this->redirectRoute('cart');
     }
 
 }

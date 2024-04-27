@@ -53,31 +53,48 @@
                 <td class="border px-2 py-2 text-center">
                     <a href="#" class="no-underline" wire:click.prevent="delete('{{ $product->rowId }}')"> <i class="bi bi-trash" style="font-size: 0.75rem;"></i></a>
                 </td>
+
             </tr>
+
         @endforeach
         <tr>
             <td class="border px-4 py-2">Total : {{ Cart::total() }}</td>
             <td class="border px-2 py-2 text-center">
-                <a href="#" class="no-underline" wire:click.prevent="clear()"> Clear</a>
+                <form action="{{ route('cart.destroy',$product->rowId ) }}" method="POST">
+                    @csrf
+                    <button type="submit">Empty Cart</button>
+                </form>
             </td>
         </tr>
         </tbody>
 
     </table>
-        @livewire('test-component')
-
     @else
     <p>No item in Cart</p>
     @endif
 </div>
     @if (session('success'))
-        <div x-data="{ show: true }" x-show="show" x-init="@this.on('hide-success-message', () => { setTimeout(() => show = false, 3000); })" class="alert alert-success">
-            {{ session('success') }}
-        </div>
+            <div id="myModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
+                <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+                    <div class="mt-3 text-center">
+                        <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100">
+                            <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-lg leading-6 font-medium text-gray-900">Done</h3>
+                        <div class="mt-2 px-7 py-3">
+                            <p class="text-sm text-gray-500"> {{ session('success') }}</p>
+                        </div>
+                        <div class="items-center px-4 py-3">
+                            <button id="okBtn" onclick="closeModal()" class="px-4 py-2 bg-green-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-300">
+                                ОК
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
     @endif
-
-
-<!-- Navbar End -->
 
 
 
@@ -174,6 +191,24 @@
 <!-- JavaScript Libraries -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        window.onload = function() {
+            const flashMessage = document.getElementById('myModal');
+            flashMessage.classList.remove('hidden');
+
+            setTimeout(() => {
+                flashMessage.classList.add('hidden')
+            }, 2000);
+        };
+        function closeModal() {
+            document.getElementById("myModal").classList.add("hidden");
+        }
+
+        function openModal() {
+            document.getElementById("myModal").classList.remove("hidden");
+        }
+
+    </script>
 
 </div>
 </body>
