@@ -7,10 +7,6 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 
 class CartIconComponent extends Component
 {
-function mount ()
-{
-    $
-}
    public function render()
     {
         return view('livewire.cart-icon-component', [
