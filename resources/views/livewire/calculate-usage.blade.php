@@ -16,14 +16,39 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
+    @vite('resources/css/app.css')
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    @vite('resources/css/app.css')
     <link href="css.style.css" rel="stylesheet">
+    <link rel="stylesheet" href="path/to/tailwind.min.css">
 </head>
 
+<body>
 <div>
     @livewire('nav-component')
+    <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+        <h2 class="text-2xl font-bold mb-4 text-center">Date Selection Form for {{ Auth::user()->name }}</h2>
+        <form method="post" action = "{{route('calc.post')}}">
+            @csrf
+            <div class="mb-4">
+                <label for="date1" class="block text-sm font-medium text-gray-700">Date start</label>
+                <input type="date" id="date1" name="date1" wire:model="date1" class="mt-1 block w-30 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+            </div>
+            <div class="mb-4">
+                <label for="date2" class="block text-sm font-medium text-gray-700">Date end</label>
+                <input type="date" id="date2" name="date2" wire:model="date2" class="mt-1 block w-30 p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+            </div>
+            <div class="text-center">
+                <button type="submit" class="l bg-blue-500 hover:bg-blue-700 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">Submit</button>
+            </div>
+        </form>
+        <p class="mt-4 text-center text-gray-600">{{$totalUsd}} USD</p>
+    </div>
+
+
+
+
+
 
 
     <div class="container-xxl py-5">
@@ -112,8 +137,11 @@
     </div>
 
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
 </div>
 </body>
 

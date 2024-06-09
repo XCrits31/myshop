@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('mycategories', function (Blueprint $table) {
+        Schema::create('discount_rules', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->timestamps()->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->string('description');
+            $table->json('data')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -23,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('mycategories');
+        Schema::dropIfExists('discount_rules');
     }
 };

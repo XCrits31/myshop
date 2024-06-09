@@ -28,7 +28,11 @@ class ViewComponent extends Component
     }
     public function store($product_id, $product_name, $product_price, $user_id) : void
     {
-        Cart::add($product_id, $product_name, 1, $product_price)->associate('App\Models\Product');
+        $check = Cart::count();
+        Cart::add($product_id, $product_name, 1, $product_price,['discount' => 20])->associate('App\Models\Product');
+        /*if($check == 0){
+            Cart::add(9999,'discount',1,0);
+        }*/
         Cart::store($user_id);
         session()->flash('success', 'Added to Cart');
         $this->redirectRoute('cart');

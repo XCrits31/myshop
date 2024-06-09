@@ -32,7 +32,10 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
-
+    public function invoices()
+    {
+        return $this->hasMany(Invoice::class);
+    }
     /**
      * The attributes that should be cast.
      *

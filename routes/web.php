@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Livewire\CalculateUsageComponent;
 use App\Livewire\CartComponent;
 use App\Livewire\HomeComponent;
 use App\Livewire\ViewComponent;
@@ -20,10 +21,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/index', HomeComponent::class)->name('view.first')->middleware('auth');;
-Route::get('/index/{id}', ViewComponent::class)->name('view.second')->middleware('auth');;
-Route::get('/cart', CartComponent::class)->name("cart")->middleware('auth');;
-Route::post('/cart/destroy', [CartComponent::class, 'clear'])->name('cart.destroy')->middleware('auth');;
+Route::get('/index', HomeComponent::class)->name('view.first')->middleware('auth');
+Route::get('/index/{id}', ViewComponent::class)->name('view.second')->middleware('auth');
+Route::get('/cart', CartComponent::class)->name("cart")->middleware('auth');
+Route::get('/calculate', CalculateUsageComponent::class)->name("calc")->middleware('auth');
+Route::post('/calculated',  [CalculateUsageComponent::class, 'calc'])->name("calc.post")->middleware('auth');
+Route::post('/cart/destroy', [CartComponent::class, 'clear'])->name('cart.destroy')->middleware('auth');
 
 
 
