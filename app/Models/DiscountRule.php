@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class DiscountRule extends Model
 {
     use HasFactory;
+    protected $table = 'discount_rules';
 }

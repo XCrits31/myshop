@@ -80,7 +80,28 @@
     @else
     <p>No item in Cart</p>
     @endif
+    <button alt = "coming soon" class="bg-blue-500 text-white font-bold py-2 px-4 rounded-full hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 transition duration-200 ease-in-out transform hover:scale-105 active:scale-95 shadow-lg">
+        buy
+    </button>
 </div>
+    <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
+        <div class="px-6 py-4">
+            <h1 class="text-2xl font-bold text-gray-800 mb-4">Discount applied</h1>
+            <ul class="divide-y divide-gray-200">
+                @foreach($discounts as $disc)
+                    <li class="py-4 flex items-center">
+                        <div class="flex-shrink-0 h-10 w-10 rounded-full bg-blue-500 flex items-center justify-center text-white">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="text-lg font-medium text-gray-900">Discount  {{$disc->id}}</h4>
+                            <p class="text-gray-500">{{$disc->description}}</p>
+                        </div>
+                    </li>
+                @endforeach
+            </ul>
+        </div>
+    </div>
     @if (session('success'))
             <div id="myModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
                 <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">

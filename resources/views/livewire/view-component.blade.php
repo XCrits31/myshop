@@ -33,13 +33,19 @@
     <h2 class="text-2xl font-bold my-4">{{ $category->name }}</h2>
     <table class="table-auto w-full mb-4">
         <tbody>
+        <tr>
+            <td class="border px-4 py-2">name</td>
+            <td class="border px-4 py-2">price</td>
+            <td class="border px-4 py-2">discount</td>
+        </tr>
         @if($category->products != '[]')
         @foreach ($category->products as $product)
             <tr>
                 <td class="border px-4 py-2">{{ $product->name }}</td>
                 <td class="border px-4 py-2">{{ $product->price }}</td>
+                <td class="border px-4 py-2">{{ $product->discount }}</td>
                 <td class="border px-2 py-2 text-center">
-                    <a href="#" class="no-underline" wire:click.prevent="store({{ $product->id }}, '{{ $product->name}}', {{ $product->price }}, {{Auth::user()->id }})"> <i class="bi bi-cart" style="font-size: 0.75rem;"></i></a>
+                    <a href="#" class="no-underline" wire:click.prevent="store({{ $product->id }}, '{{ $product->name}}', {{ $product->price }}, {{$product->discount}}, {{Auth::user()->id }})"> <i class="bi bi-cart" style="font-size: 0.75rem;"></i></a>
                 </td>
             </tr>
         @endforeach
@@ -49,6 +55,25 @@
         </tbody>
     </table>
 </div>
+
+    <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
+        <div class="px-6 py-4">
+            <h1 class="text-2xl font-bold text-gray-800 mb-4">Discount list</h1>
+            <ul class="divide-y divide-gray-200">
+                @foreach($discount as $disc)
+                <li class="py-4 flex items-center">
+                    <div class="flex-shrink-0 h-10 w-10 rounded-full bg-blue-500 flex items-center justify-center text-white">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="ml-4">
+                        <h4 class="text-lg font-medium text-gray-900">Discount  {{$disc->id}}</h4>
+                        <p class="text-gray-500">{{$disc->description}}</p>
+                    </div>
+                </li>
+                @endforeach
+            </ul>
+        </div>
+    </div>
     @if (session('success'))
         <div x-data="{ show: true }" x-show="show" x-init="@this.on('hide-success-message', () => { setTimeout(() => show = false, 3000); })" class="alert alert-success">
             {{ session('success') }}

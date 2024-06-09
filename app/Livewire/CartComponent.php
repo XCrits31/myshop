@@ -10,6 +10,7 @@ class CartComponent extends Component
 {
     private $total = 0;
     private $total_discount = 0;
+    private $end =[];
     public function mount()
     {
             $userId = auth()->user()->id;
@@ -30,6 +31,7 @@ class CartComponent extends Component
             'created_at' => now(),
             'updated_at' => now()
         ]);*/
+        $disclsit = [];
         $discounts = DB::table('discount_rules')->get();
         $categories = DB::table('mycategories')->get();
         $catprod = DB::table('category_product')->get();
@@ -49,6 +51,7 @@ class CartComponent extends Component
                 $discountPercent = $data['discount_percent'];
 
                     $call = $this->CartDiscount($categoriesInvolved, $excludedProducts, Cart::content(), $categories, $random);
+                    if($call) { $disclsit[] = $discount->id;}
                     if ($call) {
                         if ($discount_info == 'total') {
                             $totalPercent += $discountPercent;
@@ -82,6 +85,7 @@ class CartComponent extends Component
 
 
             }
+        $this->end = array_unique($disclsit);
         $this->total_discount += (($this->total - $this->total_discount) * $totalPercent) / 100.0;
     }
     public function name_id($id, $categories)
@@ -204,11 +208,6 @@ return null;
     public function delete($id): void
     {
 
-        if(!$this->Check($id)){
-            session()->flash('error', 'not found in cart');
-            $this->redirectRoute('cart');
-            return;
-        }
                 Cart::remove($id);
                 request()->session()->flash("session", "Removed successfully");
                 Cart::store(auth()->id());
@@ -245,6 +244,7 @@ return null;
         return view('livewire.cart-component')->with([
             'total' => $this->total,
             'distotal' => $this->total_discount,
+            'discounts' => $this->end,
         ]);
     }
 }
