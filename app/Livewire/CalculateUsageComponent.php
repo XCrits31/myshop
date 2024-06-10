@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 
+use App\Models\Payment;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Livewire\Component;
@@ -44,11 +45,14 @@ class CalculateUsageComponent extends Component
             if($date<=$periodEnd && $date>=$periodStart) $totalEur+=$payment->amount;
         }
         return  $totalEur * $rate;
-
         }
 
     public function render()
     {
-        return view('livewire.calculate-usage', ['totalUsd' => $this->totalUsd]);
+        return view('livewire.calculate-usage',
+            ['totalUsd' => $this->totalUsd],
+            ['payments' => Payment::all()],
+
+        );
     }
 }

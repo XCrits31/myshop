@@ -45,7 +45,7 @@
                 <td class="border px-4 py-2">{{ $product->price }}</td>
                 <td class="border px-4 py-2">{{ $product->discount }}</td>
                 <td class="border px-2 py-2 text-center">
-                    <a href="#" class="no-underline" wire:click.prevent="store({{ $product->id }}, '{{ $product->name}}', {{ $product->price }},  {{Auth::user()->id }})"> <i class="bi bi-cart" style="font-size: 0.75rem;"></i></a>
+                    <a href="#" class="no-underline" wire:click.prevent="store({{ $product->id }}, '{{ $product->name}}', {{ $product->price }}, {{$product->discount}} {{Auth::user()->id }})"> <i class="bi bi-cart" style="font-size: 0.75rem;"></i></a>
                 </td>
             </tr>
         @endforeach
@@ -58,7 +58,7 @@
 
     <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
         <div class="px-6 py-4">
-            <h1 class="text-2xl font-bold text-gray-800 mb-4">Discount list</h1>
+            <h1 class="text-2xl font-bold text-gray-800 mb-4">Discounts list</h1>
             <ul class="divide-y divide-gray-200">
                 @foreach($discount as $disc)
                 <li class="py-4 flex items-center">
@@ -66,7 +66,7 @@
                         <i class="fas fa-check"></i>
                     </div>
                     <div class="ml-4">
-                        <h4 class="text-lg font-medium text-gray-900">Discount  {{$disc->id}}</h4>
+                        <h5 class="text-lg font-medium text-gray-900">Discount  {{$disc->id}}</h5>
                         <p class="text-gray-500">{{$disc->description}}</p>
                     </div>
                 </li>

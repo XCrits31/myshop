@@ -26,6 +26,8 @@
 <body>
 <div>
     @livewire('nav-component')
+
+    <div class="container mx-auto p-6 flex">
     <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
         <h2 class="text-2xl font-bold mb-4 text-center">Date Selection Form for {{ Auth::user()->name }}</h2>
         <form method="post" action = "{{route('calc.post')}}">
@@ -42,13 +44,26 @@
                 <button type="submit" class="l bg-blue-500 hover:bg-blue-700 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">Submit</button>
             </div>
         </form>
-        <p class="mt-4 text-center text-gray-600">{{$totalUsd}} USD</p>
+        <p class="mt-4 text-center text-gray-600">total: {{$totalUsd}} USD</p>
     </div>
 
 
+    <div class="w-1/3 ml-6 bg-white p-6 rounded-lg shadow-lg">
+        <h2 class="text-2xl font-bold mb-4">My payments list</h2>
+        <ul class="divide-y divide-gray-200">
+            @foreach($payments as $payment)
+            <li class="py-4 flex items-center">
+                <div class="ml-4">
+                    <h3 class="text-lg font-medium text-gray-900">invoice {{$payment->invoice_id}}</h3>
+                    <p class="text-gray-500">payment_date: {{ $payment->payment_date }}</p>
+                    <p class="text-gray-500">amount: {{$payment->amount}}</p>
+                </div>
+            </li>
+            @endforeach
+        </ul>
+    </div>
 
-
-
+    </div>
 
 
     <div class="container-xxl py-5">
