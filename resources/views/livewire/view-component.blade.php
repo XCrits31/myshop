@@ -44,6 +44,7 @@
                 <td class="border px-4 py-2">{{ $product->name }}</td>
                 <td class="border px-4 py-2">{{ $product->price }}</td>
                 <td class="border px-4 py-2">{{ $product->discount }}</td>
+                <td class="border px-4 py-2">{{ $product->price - ($product->price * $product->discount) }}</td>
                 <td class="border px-2 py-2 text-center">
                     <a href="#" class="no-underline" wire:click.prevent="store({{ $product->id }}, '{{ $product->name}}', {{ $product->price }}, {{$product->discount}} {{Auth::user()->id }})"> <i class="bi bi-cart" style="font-size: 0.75rem;"></i></a>
                 </td>
