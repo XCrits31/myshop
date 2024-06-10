@@ -51,8 +51,8 @@ class CartComponent extends Component
                 $discountPercent = $data['discount_percent'];
 
                     $call = $this->CartDiscount($categoriesInvolved, $excludedProducts, Cart::content(), $categories, $random);
-                    if($call) { $disclsit[] = $discount->id;}
                     if ($call) {
+                        $disclsit[] = $discount;
                         if ($discount_info == 'total') {
                             $totalPercent += $discountPercent;
                         } else if ($discount_info == 'partial_cat') {

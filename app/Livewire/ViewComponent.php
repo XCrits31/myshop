@@ -29,10 +29,10 @@ class ViewComponent extends Component
             'discount' => $this->disc
         ]);
     }
-    public function store($product_id, $product_name, $product_price, $discount, $user_id) : void
+    public function store($product_id, $product_name, $product_price, $user_id) : void
     {
         $check = Cart::count();
-        Cart::add($product_id, $product_name, 1, $product_price,['discount' => $discount])->associate('App\Models\Product');
+        Cart::add($product_id, $product_name, 1, $product_price,['discount' => 20])->associate('App\Models\Product');
         /*if($check == 0){
             Cart::add(9999,'discount',1,0);
         }*/
