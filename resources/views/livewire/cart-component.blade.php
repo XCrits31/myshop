@@ -77,12 +77,13 @@
         </tr>
         </tbody>
     </table>
+        <button alt = "coming soon" class="bg-blue-500 text-white font-bold py-2 px-4 rounded-full hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 transition duration-200 ease-in-out transform hover:scale-105 active:scale-95 shadow-lg">
+            buy
+        </button>
     @else
     <p>No item in Cart</p>
     @endif
-    <button alt = "coming soon" class="bg-blue-500 text-white font-bold py-2 px-4 rounded-full hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 transition duration-200 ease-in-out transform hover:scale-105 active:scale-95 shadow-lg">
-        buy
-    </button>
+
 </div>
     <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
         <div class="px-6 py-4">
