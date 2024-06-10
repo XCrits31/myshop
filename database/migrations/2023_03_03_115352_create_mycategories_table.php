@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('mycategories', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->timestamps()->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamps();
         });
     }
 
