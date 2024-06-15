@@ -15,31 +15,19 @@ class CartComponent extends Component
     {
             $userId = auth()->user()->id;
             Cart::restore($userId);
-        $data = [
-            'random' => 0,
-            'categories_involved' => [['A',3], ['C',1]],
-            'excluded_products' => [],
-            'discount_info' => 'partial_cat',//total, partial_cat, partial_prod
-            'discount_partial' => [21],//
-            'discount_percent' => 20.00
-        ];
-
-
-       /* DB::table('discount_rules')->insert([
-            'description' => 'discount',
-            'data' => json_encode($data),
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);*/
         $disclsit = [];
+
         $discounts = DB::table('discount_rules')->get();
         $categories = DB::table('mycategories')->get();
         $catprod = DB::table('category_product')->get();
+
         foreach (Cart::content() as $product) {
                     $this->total += $product->price * $product->qty;
                     $this->total_discount += (($product->price*$product->qty) - (($product->price - ($product->price * ($product->options->discount / 100))) * $product->qty));
             }
+
         $totalPercent = 0;
+
             foreach($discounts as $discount) {
                 $data = json_decode($discount->data, true);
 
@@ -68,7 +56,6 @@ class CartComponent extends Component
                                 foreach ($prodarr as $prod) {
                                     if ($cont->id == $prod){
                                         $this->total_discount += ($cont->subtotal * $discountPercent) / 100.0;
-                                        //dd($cont->subtotal);
                                     }
                                 }
                             }
@@ -88,13 +75,7 @@ class CartComponent extends Component
         $this->end = array_unique($disclsit);
         $this->total_discount += (($this->total - $this->total_discount) * $totalPercent) / 100.0;
     }
-    public function name_id($id, $categories)
-    {
-foreach ($categories as $category) {
-    if($category->id == $id){return $category->name;}
-    }
-return null;
-    }
+
     public function CartDiscount($categoriesInvolved, $excludedProducts, $content, $categories, $random) : bool
     {
         $arr = [];
