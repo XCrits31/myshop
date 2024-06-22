@@ -44,7 +44,10 @@
                 <button type="submit" class="l bg-blue-500 hover:bg-blue-700 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">Submit</button>
             </div>
         </form>
-        <p class="mt-4 text-center text-gray-600">total: {{$totalUsd}} USD</p>
+        <ul>
+            <li><p class="mt-4 text-center text-gray-600">total: {{$totalUsd}} USD</p></li>
+            <li><p class="mt-4 text-center text-gray-600">dollar rate: {{$rateUsd}} </p></li>
+        </ul>
     </div>
 
 

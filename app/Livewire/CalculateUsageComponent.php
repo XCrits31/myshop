@@ -13,13 +13,23 @@ use Illuminate\Support\Facades\Auth;
 
 class CalculateUsageComponent extends Component
 {
-
-    public $totalUsd = 0;
+    private $key = "9228e5ebde005b5ec4a021da";
+    private $usdrate;
+    public $totalUsd;
     public function mount()
     {
+        $url = 'https://v6.exchangerate-api.com/v6/' . $this->key . '/latest/EUR';
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+        $response = curl_exec($ch);
+        curl_close($ch);
+
+        $data = json_decode($response, true);
+
+        $this -> usdrate = $data['conversion_rates']['USD'];
     }
-    public $date1;
-    public $date2;
     public function calc(Request $request)
     {
         $date1 = $request->date1;
@@ -27,7 +37,7 @@ class CalculateUsageComponent extends Component
         $userId = Auth::id();
             $str1 = strtotime( $date1);
             $str2 = strtotime( $date2);
-            $this->totalUsd = $this->calcTotal($str1, $str2,1.08, $userId);
+            $this->totalUsd = $this->calcTotal($str1, $str2,$this->usdrate, $userId);
         return view('livewire.calculate-usage', [
             'totalUsd' => $this->totalUsd,
         ]);
@@ -50,9 +60,10 @@ class CalculateUsageComponent extends Component
     public function render()
     {
         return view('livewire.calculate-usage',
-            ['totalUsd' => $this->totalUsd],
-            ['payments' => Payment::all()],
-
+            ['totalUsd' => $this->totalUsd,
+             'payments' => Payment::all(),
+             'rateUsd' => $this->usdrate
+            ],
         );
     }
 }
