@@ -223,9 +223,9 @@ class CartComponent extends Component
     {
 
         return view('livewire.cart-component')->with([
-            'total' => $this->total,
-            'distotal' => $this->total_discount,
-            'discounts' => $this->end,
+            'total' => round($this->total, 2),
+            'distotal' => round($this->total_discount, 2),
+            'discounts' => round($this->end, 2)
         ]);
     }
 }

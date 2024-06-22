@@ -67,7 +67,7 @@
         <tr>
             <td class="border px-4 py-2">Total : {{ $total }}</td>
             <td class="border px-4 py-2">Discount : {{ $distotal }}</td>
-            <td class="border px-4 py-2">result : {{ $total - $distotal }}</td>
+            <td class="border px-4 py-2">result : {{number_format(($total - $distotal), 2)  }}</td>
             <td class="border px-2 py-2 text-center">
                 <form action="{{ route('cart.destroy') }}" method="POST">
                     @csrf
