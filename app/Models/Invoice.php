@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Invoice extends Model
 {
     protected $fillable = ['date', 'duration_months', 'user_id'];
+    protected $table = 'invoices';
 
     public function payments()
     {

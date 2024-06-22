@@ -17,7 +17,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     @vite('resources/css/app.css')
-
+    @livewireStyles
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="css.style.css" rel="stylesheet">
     <link rel="stylesheet" href="path/to/tailwind.min.css">
@@ -48,6 +48,7 @@
             <li><p class="mt-4 text-center text-gray-600">total: {{$totalUsd}} USD</p></li>
             <li><p class="mt-4 text-center text-gray-600">dollar rate: {{$rateUsd}} </p></li>
         </ul>
+        <hr>
     </div>
 
 
@@ -66,6 +67,10 @@
         </ul>
     </div>
 
+        <div class="w-1/3 ml-6 bg-white p-6 rounded-lg shadow-lg">
+
+                <livewire:main-component :items="$items, $rateUsd" />
+    </div>
     </div>
 
 
@@ -159,7 +164,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-
+    @livewireScripts
 </div>
 </body>
 
