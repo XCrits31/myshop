@@ -56,7 +56,7 @@ class MainComponent extends Component
             $date = strtotime( $payment->payment_date);
             if($date<=$periodEnd && $date>=$periodStart) $totalEur+=$payment->amount;
         }
-        return  $totalEur * $rate;
+        return  round($totalEur * $rate,2);
     }
 
 
