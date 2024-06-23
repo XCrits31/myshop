@@ -169,8 +169,8 @@ class CartComponent extends Component
         $product = Cart::get($rowid);
         Cart::update($rowid,$product->qty+1);
         Cart::store(auth()->id());
-        //session()->flash('success', 'updated');
-        //$this->redirectRoute('cart');
+        session()->flash('success', 'updated');
+        $this->redirectRoute('cart');
     }
     public function qtydown($rowid): void
     {
@@ -183,8 +183,8 @@ class CartComponent extends Component
             Cart::update($rowid, $product->qty -= 1);
 
             Cart::store(auth()->id());
-            //session()->flash('success', 'updated');
-            //$this->redirectRoute('cart');
+            session()->flash('success', 'updated');
+            $this->redirectRoute('cart');
 
     }
     public function delete($id): void
