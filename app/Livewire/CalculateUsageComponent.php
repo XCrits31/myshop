@@ -40,13 +40,7 @@ class CalculateUsageComponent extends Component
             $str1 = strtotime( $date1);
             $str2 = strtotime( $date2);
             $this->totalUsd = $this->calcTotal($str1, $str2,$this->usdrate, $userId);
-            $this->mount();
-        return view('livewire.calculate-usage', [
-            'totalUsd' => $this->totalUsd,
-            'payments' => Payment::all(),
-            'rateUsd' => $this->usdrate,
-            'items' => $this->items
-        ]);
+            //$this->mount();
     }
 
     public function calcTotal($periodStart, $periodEnd, $rate, $userId)
