@@ -13,19 +13,14 @@ class CartComponent extends Component
     private $end =[];
     public function mount()
     {
-            $userId = auth()->user()->id;
-            Cart::restore($userId);
+        $userId = auth()->user()->id;
+        Cart::restore($userId);
         $disclsit = [];
 
         $discounts = DB::table('discount_rules')->get();
         $categories = DB::table('mycategories')->get();
         $catprod = DB::table('category_product')->get();
-
-        foreach (Cart::content() as $product) {
-                    $this->total += $product->price * $product->qty;
-                    $this->total_discount += (($product->price*$product->qty) - (($product->price - ($product->price * ($product->options->discount / 100))) * $product->qty));
-            }
-
+        $this->total();
         $totalPercent = 0;
 
             foreach($discounts as $discount) {
@@ -75,7 +70,13 @@ class CartComponent extends Component
         $this->end = array_unique($disclsit);
         $this->total_discount += (($this->total - $this->total_discount) * $totalPercent) / 100.0;
     }
+    public function total() : void{
+        foreach (Cart::content() as $product) {
+            $this->total += $product->price * $product->qty;
+            $this->total_discount += (($product->price*$product->qty) - (($product->price - ($product->price * ($product->options->discount / 100))) * $product->qty));
+        }
 
+    }
     public function CartDiscount($categoriesInvolved, $excludedProducts, $content, $categories, $random) : bool
     {
         $arr = [];
@@ -168,8 +169,8 @@ class CartComponent extends Component
         $product = Cart::get($rowid);
         Cart::update($rowid,$product->qty+1);
         Cart::store(auth()->id());
-        session()->flash('success', 'updated');
-        $this->redirectRoute('cart');
+        //session()->flash('success', 'updated');
+        //$this->redirectRoute('cart');
     }
     public function qtydown($rowid): void
     {
@@ -182,8 +183,8 @@ class CartComponent extends Component
             Cart::update($rowid, $product->qty -= 1);
 
             Cart::store(auth()->id());
-            session()->flash('success', 'updated');
-            $this->redirectRoute('cart');
+            //session()->flash('success', 'updated');
+            //$this->redirectRoute('cart');
 
     }
     public function delete($id): void

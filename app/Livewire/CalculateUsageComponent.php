@@ -2,10 +2,7 @@
 
 namespace App\Livewire;
 
-
-use App\Models\Invoice;
 use App\Models\Payment;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
@@ -17,8 +14,6 @@ class CalculateUsageComponent extends Component
     private $key = "9228e5ebde005b5ec4a021da";
     public $usdrate;
     public $totalUsd;
-    public $selectedItem = null;
-    public $generatedList = [];
     public $items = [];
     public function mount()
     {
