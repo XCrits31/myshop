@@ -27,10 +27,28 @@
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen dark:bg-gray-900 bg-white">
+
+        <div>
             @livewire('nav-component')
+            <!-- Page Heading -->
             <main>
-                {{ $slot }}
+            @if (isset($header))
+                <header class="bg-white text-black">
+                    <div class="max-w-7xl text-black mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                        {{ $header }}
+                    </div>
+                </header>
+            @endif
+
+        <div class="container text-black">
+            @yield('content')
+            <?php if (!isset($slot)) {
+                $slot = ' ';
+            } ?>
+            {{ $slot }}
+        </div>
             </main>
+        </div>
         </div>
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>

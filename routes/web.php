@@ -21,7 +21,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 })->name('view.first');
-//Route::get('/index', HomeComponent::class)->name('view.first')->middleware('auth');
 Route::get('/index/{id}', ViewComponent::class)->name('view.second')->middleware('auth');
 Route::get('/cart', CartComponent::class)->name("cart")->middleware('auth');
 Route::get('/calculate', CalculateUsageComponent::class)->name("calc")->middleware('auth');
